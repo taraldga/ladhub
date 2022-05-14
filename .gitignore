@@ -1,3 +1,13 @@
-venv
-node_modules
+# General
+
 .idea
+
+# Frontend / JS specific
+
+node_modules
+
+
+# Backend / Python / Django specific
+
+venv
+db.sqlite3
