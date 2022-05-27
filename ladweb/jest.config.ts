@@ -3,9 +3,7 @@ export default {
   transform: {
     "^.+\\.tsx?$": "ts-jest"
   },
-  moduleDirectories: [
-    'node_modules',
-    'src/utils',
-    __dirname
-  ]
+  moduleNameMapper: {
+    "@utils/(.*)": "<rootDir>/src/utils/$1"
+  }
 }

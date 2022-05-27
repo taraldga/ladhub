@@ -1,6 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react'; 
-import {render} from '../../utils/test-utils';
+import {render} from '@utils/test-utils';
 
 import Login from './Login';
 
