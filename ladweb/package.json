@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "jest --watch"
+    "test": "jest --watch --maxWorkers=1"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.17.12",
