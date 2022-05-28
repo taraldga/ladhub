@@ -12,6 +12,7 @@ import {
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import useStore, { Tokens } from "../../hooks/useStore";
+import {useNavigate} from "react-router-dom"
 
 interface LoginData {
   username: string;
@@ -25,12 +26,14 @@ function Login() {
     formState: { errors, isSubmitting },
   } = useForm<LoginData>();
   const {setTokens} = useStore();
+  const navigate = useNavigate();
 
   
 
   const onSubmit = async (data: LoginData) => {
     const res = await  axios.post('http://localhost:8000/api/token/', data);
-    setTokens(res.data as Tokens)
+    setTokens(res.data as Tokens);
+    navigate(-1)
   };
 
   return (
