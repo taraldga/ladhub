@@ -31,8 +31,7 @@ test('Expect login page to have one password field', async () => {
 test('Expect login page to have one login button', async () => {
   render(<Login />);
 
-  const loginButton = await screen.findByText('Login');
-  expect(loginButton).toBeTruthy();
+  await screen.findByText('Login');
 })
 
 
@@ -43,7 +42,14 @@ test('expect to get an error message if username is missing', async () => {
 
   fireEvent.click(screen.getByText("Login"))
 
-  const errorMessage = await screen.findByText("Username is required");
+  await screen.findByText("Username is required");
+})
 
-  expect(errorMessage).toBeTruthy();
+
+test('expect to get an error message if password is missing', async () => {
+  render(<Login />)
+
+  fireEvent.click(screen.getByText("Login"))
+
+  await screen.findByText("Password is required");
 })
