@@ -10,22 +10,35 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import axios from 'axios';
+import useStore, { Tokens } from "../../hooks/useStore";
+
+interface LoginData {
+  username: string;
+  password: string;
+}
 
 function Login() {
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<LoginData>();
+  const {setTokens} = useStore();
 
-  const onSubmit = () => {};
+  
+
+  const onSubmit = async (data: LoginData) => {
+    const res = await  axios.post('http://localhost:8000/api/token/', data);
+    setTokens(res.data as Tokens)
+  };
 
   return (
     <VStack spacing={"10px"}>
       <Heading>Log in</Heading>
       <Container>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <FormControl isInvalid={errors.username}>
+          <FormControl isInvalid={!!errors.username}>
             <FormLabel htmlFor="username">Username</FormLabel>
             <Input
               id="username"
@@ -38,10 +51,11 @@ function Login() {
               {errors.username && errors.username.message}
             </FormErrorMessage>
           </FormControl>
-          <FormControl isInvalid={errors.username}>
+          <FormControl isInvalid={!!errors.username}>
             <FormLabel htmlFor="password">Password</FormLabel>
             <Input
               id="password"
+              type="password"
               placeholder="Password"
               {...register("password", {
                 required: "Password is required",
