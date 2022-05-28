@@ -1,5 +1,4 @@
-import React from 'react';
-import { screen } from '@testing-library/react'; 
+import { screen, fireEvent} from '@testing-library/react'; 
 import {render} from '@utils/test-utils';
 
 import Login from './Login';
@@ -34,4 +33,17 @@ test('Expect login page to have one login button', async () => {
 
   const loginButton = await screen.findByText('Login');
   expect(loginButton).toBeTruthy();
+})
+
+
+
+
+test('expect to get an error message if username is missing', async () => {
+  render(<Login />)
+
+  fireEvent.click(screen.getByText("Login"))
+
+  const errorMessage = await screen.findByText("Username is required");
+
+  expect(errorMessage).toBeTruthy();
 })
