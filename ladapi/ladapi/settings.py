@@ -40,13 +40,15 @@ INSTALLED_APPS = [
     # 3rd party apps
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
+    # 'core',
 
     # My apps
-    'core',
     'fjelltop',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'ladapi.urls'
@@ -136,3 +139,6 @@ REST_FRAMEWORK = {
     )
 }
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from .models import Top, Ascent
 from .serializers import TopSerializer, AscentSerializer
 # Create your views here.
@@ -12,3 +12,4 @@ class TopViewSet(viewsets.ModelViewSet):
 class AscentViewSet(viewsets.ModelViewSet):
     queryset = Ascent.objects.all()
     serializer_class = AscentSerializer
+    permission_classes = [permissions.IsAuthenticated]
